@@ -1,0 +1,26 @@
+This is a cleanup of the signal handler in my old socket server code. I'm
+going to dig into that project in a bit and see if I can clean it up a bit,
+and I wanted to start by breaking this portion of it out. This object manages
+a threaded signal handler, mostly so I can catch the SIGHUPs when sockets
+close in the socket server code. See signal_handler comments and test code
+for usage.
+
+I'm building this on a C++11-enabled C++ compiler, but am mostly using
+boost libraries for this. They seem pretty similar to the new std ones,
+but will be more compatible with older compilers. To port this back you
+could just replace the nullptrs with NULLs and remove the -std=c++11
+from the makefiles and that should do it.
+
+ * Copyright 2014 Bruce Ide
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
